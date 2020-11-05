@@ -1,0 +1,119 @@
+import 'package:flutter/material.dart';
+import 'package:liberavendas/ui/login/LoginPage.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: LoginPage(),
+    debugShowCheckedModeBanner: false,
+  ));
+}
+import 'package:flutter/material.dart';
+import 'package:liberavendas/ui/home/HomePage.dart';
+
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              height: 150.0,
+              width: 150.0,
+              child: Image.asset(
+                'images/icone.png',
+              ),
+            ),
+            TextField(
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                  labelText: "CPF", labelStyle: TextStyle(color: Colors.green)),
+              style: TextStyle(color: Colors.black, fontSize: 20.0),
+            ),
+            Divider(),
+            TextField(
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                  labelText: "Senha",
+                  labelStyle: TextStyle(color: Colors.green)),
+              style: TextStyle(color: Colors.black, fontSize: 20.0),
+            ),
+            Container(
+              height: 50.0,
+              child: RaisedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
+                },
+                child: Text(
+                  "Login",
+                  style: TextStyle(color: Colors.white, fontSize: 20.0),
+                ),
+                color: Colors.green,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+import 'package:flutter/material.dart';
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("AppBar"),
+          centerTitle: true,
+          backgroundColor: Colors.green,
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Pedidos",
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+            ),
+            Divider(
+              color: Colors.black,
+              height: 15,
+              thickness: 1,
+            ),
+            Expanded(
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 5, // the length
+                  itemBuilder: (context, index) {
+                    return Container(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Card(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            const ListTile(
+                              title: Text('Nome'),
+                              subtitle: Text('CPF'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+            ),
+          ],
+        ));
+  }
+}
